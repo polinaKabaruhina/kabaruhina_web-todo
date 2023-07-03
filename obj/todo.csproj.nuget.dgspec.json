@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "/home/dunice/todo/todo.csproj": {}
+    "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj": {}
   },
   "projects": {
-    "/home/dunice/todo/todo.csproj": {
+    "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dunice/todo/todo.csproj",
+        "projectUniqueName": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj",
         "projectName": "todo",
-        "projectPath": "/home/dunice/todo/todo.csproj",
-        "packagesPath": "/home/dunice/.nuget/packages/",
-        "outputPath": "/home/dunice/todo/obj/",
+        "projectPath": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj",
+        "packagesPath": "C:\\Users\\UserPC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/dunice/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\UserPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -56,6 +59,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -67,7 +74,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.119/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

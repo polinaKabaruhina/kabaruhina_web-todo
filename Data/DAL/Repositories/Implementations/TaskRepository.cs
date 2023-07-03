@@ -34,6 +34,14 @@ namespace Todo.Data.DAL.Repositories.Implementations
             return true;
         }
 
+        public async Task<Domain.Models.Task> PatchStatus(int id, bool status)
+        {
+            var task = await Select(id);
+            task.Status = status;
+            await context.SaveChangesAsync();
+            return task;
+        }
+
         public async Task<Domain.Models.Task> Select(int id)
         {
             return await context.Tasks.FindAsync(id);

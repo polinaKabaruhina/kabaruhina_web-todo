@@ -9,5 +9,8 @@ namespace Todo.Data.Services.Interfaces
         public Task<IBaseResponse<T>> Create(CreateTodoDto entityDto);
         public Task<IBaseResponse<bool>> Delete(int id);
         public Task<IBaseResponse<bool>> DeleteAllReady();
+        public Task<IBaseResponse<List<T>>> SelectAll();
+        public Task<IBaseResponse<T>> Select(int id);
+        public Task<IBaseResponse<T>> PatchStatus(int id, bool status);
     }
 }
