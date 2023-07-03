@@ -36,5 +36,43 @@ namespace Todo.Data.Services.Implementations
                 };
             }
         }
+
+        public async Task<IBaseResponse<bool>> Delete(int id)
+        {
+            try
+            {
+                var response  = new BaseResponse<bool>();
+                await repository.Delete(id);
+                response.StateCode = Enums.StateCode.Created;
+                return response;
+            }
+            catch(Exception exp)
+            {
+                return new BaseResponse<bool>()
+                {
+                    Message = $"[Delete: ] {exp.Message}",
+                    StateCode = Enums.StateCode.InternalServerError
+                };
+            }
+        }
+
+        public async Task<IBaseResponse<bool>> DeleteAllReady()
+        {
+            try
+            {
+                var response  = new BaseResponse<bool>();
+                // repository.DeleteAll();
+                response.StateCode = Enums.StateCode.Created;
+                return response;
+            }
+            catch(Exception exp)
+            {
+                return new BaseResponse<bool>()
+                {
+                    Message = $"[Delete: ] {exp.Message}",
+                    StateCode = Enums.StateCode.InternalServerError
+                };
+            }
+        }
     }
 }

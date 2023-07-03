@@ -26,5 +26,12 @@ namespace Todo.Controllers
             await service.Create(taskDto);
             return Results.Ok();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IResult> Create(int id)
+        {
+            await service.Delete(id);
+            return Results.Ok();
+        }
     }
 }

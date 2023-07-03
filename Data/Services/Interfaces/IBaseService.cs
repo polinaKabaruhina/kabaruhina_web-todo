@@ -7,5 +7,7 @@ namespace Todo.Data.Services.Interfaces
     {
         public TaskMapperConfiguration MapperConfiguration{get;set;}
         public Task<IBaseResponse<T>> Create(CreateTodoDto entityDto);
+        public Task<IBaseResponse<bool>> Delete(int id);
+        public Task<IBaseResponse<bool>> DeleteAllReady();
     }
 }
