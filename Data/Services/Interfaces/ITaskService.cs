@@ -1,6 +1,7 @@
 using Todo.Data.Domain.Models;
 using Todo.Data.DTO;
 using Todo.Data.Mapping;
+using Todo.Data.Services.HelperModels;
 using Todo.Data.Services.Implementations;
 
 namespace Todo.Data.Services.Interfaces
@@ -11,5 +12,6 @@ namespace Todo.Data.Services.Interfaces
         public Task<BaseSuccessResponse<TaskEntity>> Create(CreateTodoDto createTodo);
         public Task<BaseSuccessResponse<bool>> DeleteAllReady();
         public Task<BaseSuccessResponse<bool>> Delete(int id);
+        public Task<CustomSuccessResponse> GetPaginated(TaskPageParameters pageParameters, bool status);
     }
 }

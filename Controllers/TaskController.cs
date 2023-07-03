@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Todo.Data.Domain.Models;
 using Todo.Data.DTO;
+using Todo.Data.Services.HelperModels;
 using Todo.Data.Services.Implementations;
 using Todo.Data.Services.Interfaces;
 
@@ -38,6 +39,13 @@ namespace Todo.Controllers
         public async Task<BaseSuccessResponse<bool>> DeleteAllReady()
         {
             var response = await service.DeleteAllReady();
+            return response;
+        }
+
+        [HttpGet]
+        public async Task<CustomSuccessResponse> GetPaginated([FromQuery]TaskPageParameters parameters, bool status)
+        {
+            var response = await service.GetPaginated(parameters, status);
             return response;
         }
     }
