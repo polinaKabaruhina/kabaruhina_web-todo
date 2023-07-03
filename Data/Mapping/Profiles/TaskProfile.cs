@@ -1,5 +1,6 @@
 using AutoMapper;
-using Todo.Data.DAL.DTO;
+using Todo.Data.Domain.Models;
+using Todo.Data.DTO;
 
 namespace Todo.Data.Mapping.Profiles
 {
@@ -7,7 +8,7 @@ namespace Todo.Data.Mapping.Profiles
     {
         public TaskProfile()
         {
-            CreateMap<Domain.Models.Task, CreateTodoDto>().ReverseMap();
+            CreateMap<TaskEntity, CreateTodoDto>().ReverseMap();
         }
     }
 }

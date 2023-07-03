@@ -1,9 +1,15 @@
-using Todo.Data.DAL.DTO;
+using Todo.Data.Domain.Models;
+using Todo.Data.DTO;
+using Todo.Data.Mapping;
+using Todo.Data.Services.Implementations;
 
 namespace Todo.Data.Services.Interfaces
 {
-    public interface ITaskService : IBaseService<CreateTodoDto>
+    public interface ITaskService
     {
-        
+        public AutoMapperCreator autoMapper{get;set;}
+        public Task<BaseSuccessResponse<TaskEntity>> Create(CreateTodoDto createTodo);
+        public Task<BaseSuccessResponse<bool>> DeleteAllReady();
+        public Task<BaseSuccessResponse<bool>> Delete(int id);
     }
 }

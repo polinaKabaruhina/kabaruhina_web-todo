@@ -1,136 +1,80 @@
-using Todo.Data.DAL.DTO;
 using Todo.Data.DAL.Repositories.Interfaces;
+using Todo.Data.Domain.Models;
+using Todo.Data.DTO;
 using Todo.Data.Mapping;
 using Todo.Data.Services.Interfaces;
+using Todo.Data.Services.Enums;
 
 namespace Todo.Data.Services.Implementations
 {
     public class TaskService : ITaskService
     {
-        public TaskMapperConfiguration MapperConfiguration {get;set;}
+        public AutoMapperCreator autoMapper {get; set;}
         private readonly ITaskRepository repository;
-        public TaskService(ITaskRepository repository, TaskMapperConfiguration MapperConfiguration)
+        public TaskService(AutoMapperCreator autoMapper, ITaskRepository repository)
         {
             this.repository = repository;
-            this.MapperConfiguration = MapperConfiguration;
-            MapperConfiguration.UseMapper();
+            this.autoMapper = autoMapper;
+            autoMapper.UseMapper();
         }
 
-        public async Task<IBaseResponse<CreateTodoDto>> Create(CreateTodoDto entityDto)
+        public async Task<BaseSuccessResponse<TaskEntity>> Create(CreateTodoDto createTodo)
         {
             try
             {
-                var response  = new BaseResponse<CreateTodoDto>();
-                var task = MapperConfiguration.Mapper.Map<Domain.Models.Task>(entityDto);
-                await repository.Insert(task);
-                response.StateCode = Enums.StateCode.Created;
-                response.Data = entityDto;
+                var response = new BaseSuccessResponse<TaskEntity>();
+                var task = autoMapper.Mapper.Map<TaskEntity>(createTodo);
+                response.StatusCode = StatusCode.Created;
+                response.Data = await repository.Insert(task);
+                response.Success = true;
                 return response;
             }
-            catch(Exception exp)
+            catch (Exception)
             {
-                return new BaseResponse<CreateTodoDto>()
+                return new BaseSuccessResponse<TaskEntity>()
                 {
-                    Message = $"[Create: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false,
                 };
             }
         }
 
-        public async Task<IBaseResponse<bool>> Delete(int id)
+        public async Task<BaseSuccessResponse<bool>> Delete(int id)
         {
-            try
+           try
             {
-                var response  = new BaseResponse<bool>();
+                var response = new BaseSuccessResponse<bool>();
                 await repository.Delete(id);
-                response.StateCode = Enums.StateCode.Created;
+                response.StatusCode = StatusCode.OK;
+                response.Success = true;
                 return response;
             }
-            catch(Exception exp)
+            catch (Exception)
             {
-                return new BaseResponse<bool>()
+                return new BaseSuccessResponse<bool>()
                 {
-                    Message = $"[Delete: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false
                 };
             }
         }
 
-        public async Task<IBaseResponse<bool>> DeleteAllReady()
+        public async Task<BaseSuccessResponse<bool>> DeleteAllReady()
         {
             try
             {
-                var response  = new BaseResponse<bool>();
+                var response = new BaseSuccessResponse<bool>();
                 await repository.DeleteAll();
-                response.StateCode = Enums.StateCode.Created;
+                response.StatusCode = StatusCode.OK;
+                response.Success = true;
                 return response;
             }
-            catch(Exception exp)
+            catch (Exception)
             {
-                return new BaseResponse<bool>()
+                return new BaseSuccessResponse<bool>()
                 {
-                    Message = $"[Delete: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
-                };
-            }
-        }
-
-        public async Task<IBaseResponse<List<CreateTodoDto>>> SelectAll()
-        {
-            try
-            {
-                var response  = new BaseResponse<List<CreateTodoDto>>();
-                var tasks = MapperConfiguration.Mapper.Map<List<CreateTodoDto>>(await repository.SelectAll());
-                response.StateCode = Enums.StateCode.Created;
-                response.Data = tasks;
-                return response;
-            }
-            catch(Exception exp)
-            {
-                return new BaseResponse<List<CreateTodoDto>>()
-                {
-                    Message = $"[Delete: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
-                };
-            }
-        }
-
-        public async Task<IBaseResponse<CreateTodoDto>> Select(int id)
-        {
-            try
-            {
-                var response  = new BaseResponse<CreateTodoDto>();
-                var task = MapperConfiguration.Mapper.Map<CreateTodoDto>(await repository.Select(id));
-                response.StateCode = Enums.StateCode.Created;
-                response.Data = task;
-                return response;
-            }
-            catch(Exception exp)
-            {
-                return new BaseResponse<CreateTodoDto>()
-                {
-                    Message = $"[Delete: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
-                };
-            }
-        }
-
-        public async Task<IBaseResponse<CreateTodoDto>> PatchStatus(int id, bool status)
-        {
-            try
-            {
-                var response  = new BaseResponse<CreateTodoDto>();
-                var task = MapperConfiguration.Mapper.Map<CreateTodoDto>(await repository.PatchStatus(id, status));
-                response.StateCode = Enums.StateCode.Created;
-                response.Data = task;
-                return response;
-            }
-            catch(Exception exp)
-            {
-                return new BaseResponse<CreateTodoDto>()
-                {
-                    Message = $"[Delete: ] {exp.Message}",
-                    StateCode = Enums.StateCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false
                 };
             }
         }

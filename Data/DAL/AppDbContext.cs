@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Todo.Data.DAL.ModelConfigurations;
+using Todo.Data.Domain.Models;
 
 namespace Todo.Data.DAL
 {
@@ -7,14 +7,9 @@ namespace Todo.Data.DAL
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+
         }
 
-        public DbSet<Domain.Models.Task> Tasks{get;set;}
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new TaskModelConfiguration());
-        }
+        public DbSet<TaskEntity> Tasks{get;set;}
     }
 }

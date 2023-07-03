@@ -1,8 +1,8 @@
 namespace Todo.Data.Services.Enums
 {
-    public enum StateCode
+    public enum StatusCode
     {
-        OK = 200, 
+        OK = 200,
         Created = 201,
         InternalServerError = 500
     }

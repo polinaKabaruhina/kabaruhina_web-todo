@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Data.Domain.Models
 {
-    public class Task
+    public class TaskEntity
     {
         public int Id{get;set;}
         public string Text{get;set;}

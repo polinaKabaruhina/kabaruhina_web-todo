@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using Todo.Data.DAL.DTO;
-using Todo.Data.Services.HelperModels;
+using Todo.Data.Domain.Models;
+using Todo.Data.DTO;
+using Todo.Data.Services.Implementations;
 using Todo.Data.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Todo.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("todo/[controller]")]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService service;
@@ -17,45 +17,28 @@ namespace Todo.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> Create(string text)
+        public async Task<BaseSuccessResponse<TaskEntity>> Create(string text)
         {
-            CreateTodoDto taskDto = new CreateTodoDto()
+            CreateTodoDto created = new CreateTodoDto
             {
-                Text = text,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                Text = text
             };
-            await service.Create(taskDto);
-            return Results.Ok();
+            var response = await service.Create(created);
+            return response;
         }
 
         [HttpDelete("{id}")]
-        public async Task<IResult> Delete(int id)
+        public async Task<BaseSuccessResponse<bool>> Delete(int id)
         {
-            await service.Delete(id);
-            return Results.Ok();
+            var response = await service.Delete(id);
+            return response;
         }
 
         [HttpDelete]
-        public async Task<IResult> DeleteAllReady()
+        public async Task<BaseSuccessResponse<bool>> DeleteAllReady()
         {
-            await service.DeleteAllReady();
-            return Results.Ok();
-        }
-
-        [HttpGet]
-        public async Task<IResult> getPaginated([FromQuery]PageParameter pageParameter, bool status)
-        {
-            var response = await service.SelectAll();
-            var tasksDto = response.Data.Where(t => t.Status == status).Skip((pageParameter.Page - 1) * pageParameter.perPage).Take(pageParameter.perPage);
-            return Results.Json(tasksDto);
-        }
-
-        [HttpPatch("status/{id}")]
-        public async Task<IResult> patchStatus(int id, bool status)
-        {
-            var response = await service.PatchStatus(id, status);
-            return Results.Content(response.Data.ToString());
+            var response = await service.DeleteAllReady();
+            return response;
         }
     }
 }

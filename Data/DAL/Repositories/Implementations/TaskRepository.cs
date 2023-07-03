@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Todo.Data.DAL.Repositories.Interfaces;
+using Todo.Data.Domain.Models;
 
 namespace Todo.Data.DAL.Repositories.Implementations
 {
@@ -22,34 +23,34 @@ namespace Todo.Data.DAL.Repositories.Implementations
         public async Task<bool> DeleteAll()
         {
             var list = await SelectAll();
-            context.RemoveRange(list);
+            context.Tasks.RemoveRange(list);
             await context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<bool> Insert(Domain.Models.Task entity)
+        public async Task<TaskEntity> Insert(TaskEntity entity)
         {
+            entity.CreatedAt = DateTime.UtcNow;
+            entity.UpdatedAt = DateTime.UtcNow;
             await context.Tasks.AddAsync(entity);
             await context.SaveChangesAsync();
-            return true;
+            return entity;
         }
 
-        public async Task<Domain.Models.Task> PatchStatus(int id, bool status)
-        {
-            var task = await Select(id);
-            task.Status = status;
-            await context.SaveChangesAsync();
-            return task;
-        }
-
-        public async Task<Domain.Models.Task> Select(int id)
+        public async Task<TaskEntity> Select(int id)
         {
             return await context.Tasks.FindAsync(id);
         }
 
-        public async Task<List<Domain.Models.Task>> SelectAll()
+        public async Task<List<TaskEntity>> SelectAll()
         {
             return await context.Tasks.ToListAsync();
+        }
+
+        public async Task Update(TaskEntity entity)
+        {
+            context.Tasks.Update(entity);
+            await context.SaveChangesAsync();
         }
     }
 }
