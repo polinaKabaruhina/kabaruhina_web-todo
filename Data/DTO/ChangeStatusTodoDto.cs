@@ -1,5 +1,3 @@
-
-
 namespace Todo.Data.DTO
 {
     public class ChangeStatusTodoDto

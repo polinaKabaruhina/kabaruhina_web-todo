@@ -18,46 +18,43 @@ namespace Todo.Controllers
         }
 
         [HttpPost(Name = "create")]
-        public async Task<BaseSuccessResponse<TaskEntity>> create(string text)
+        public async Task<BaseSuccessResponse<TaskEntity>> Create(CreateTodoDto createTodoDto)
         {
-            CreateTodoDto created = new CreateTodoDto
-            {
-                Text = text
-            };
-            var response = await service.Create(created);
+
+            var response = await service.Create(createTodoDto);
             return response;
         }
 
         [HttpDelete("{id}")]
-        public async Task<BaseSuccessResponse> delete(int id)
+        public async Task<BaseSuccessResponse> Delete(int id)
         {
             var response = await service.Delete(id);
             return response;
         }
 
         [HttpDelete]
-        public async Task<BaseSuccessResponse> deleteAllReady()
+        public async Task<BaseSuccessResponse> DeleteAllReady()
         {
             var response = await service.DeleteAllReady();
             return response;
         }
 
         [HttpGet]
-        public async Task<CustomSuccessResponse> getPaginated([FromQuery]TaskPageParameters parameters, bool status)
+        public async Task<CustomSuccessResponse> GetPaginated([FromQuery]TaskPageParameters parameters, bool status)
         {
             var response = await service.GetPaginated(parameters, status);
             return response;
         }
         
         [HttpPatch("status/{id}")]
-        public async Task<BaseSuccessResponse> patchStatus(int id, bool status)
+        public async Task<BaseSuccessResponse> PatchStatus(int id, bool status)
         {
             var response =  await service.PatchStatus(id, status);
             return response;
         }
 
         [HttpPatch("text/{id}")]
-        public async Task<BaseSuccessResponse> patchText(int id, ChangeTextTodoDto textTodoDto)
+        public async Task<BaseSuccessResponse> PatchText(int id, ChangeTextTodoDto textTodoDto)
         {
             var response =  await service.PatchText(id, textTodoDto);
             return response;

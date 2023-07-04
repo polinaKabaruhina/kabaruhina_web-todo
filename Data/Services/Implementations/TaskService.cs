@@ -89,8 +89,8 @@ namespace Todo.Data.Services.Implementations
                     Data = new GetNewsDto()
                 };
                 var allTasks = await repository.SelectAll();
-                var taskByPage = allTasks.Where(t => t.Status == status)
-                                            .Skip(pageParameters.Page - 1 * pageParameters.perPage)
+                var taskByPage = allTasks.Where(t => t.Status == status).OrderBy(t => t.Id)
+                                            .Skip((pageParameters.Page - 1) * pageParameters.perPage)
                                             .Take(pageParameters.perPage).ToList();
                 response.Data.Content = taskByPage;
                 response.Data.Ready = (int)taskByPage.Where(t => t.Status == true).Count();
