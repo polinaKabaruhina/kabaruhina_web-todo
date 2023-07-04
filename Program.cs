@@ -9,7 +9,7 @@ using Todo.Data.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(op => op.UseMySql(builder.Configuration.GetConnectionString("MySQLConnectionString"), new MySqlServerVersion(new Version(8,0,32))));
+builder.Services.AddDbContext<AppDbContext>(op => op.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddTransient<AutoMapperCreator>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddTransient<ITaskService, TaskService>();

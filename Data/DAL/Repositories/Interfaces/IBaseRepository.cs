@@ -10,5 +10,6 @@ namespace Todo.Data.DAL.Repositories.Interfaces
         public Task<T> Select(int id);
         public Task<List<T>> SelectAll();
         public Task Update(T entity);
+        public Task UpdateAll(List<T> entity);
     }
 }

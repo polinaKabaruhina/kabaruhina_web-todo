@@ -10,6 +10,7 @@ namespace Todo.Data.Mapping.Profiles
         {
             CreateMap<TaskEntity, CreateTodoDto>().ReverseMap();
             CreateMap<TaskEntity,ChangeTextTodoDto>().ReverseMap();
+            CreateMap<TaskEntity, ChangeStatusTodoDto>().ReverseMap();
         }
     }
 }

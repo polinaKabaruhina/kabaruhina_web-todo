@@ -89,13 +89,13 @@ namespace Todo.Data.Services.Implementations
                     Data = new GetNewsDto()
                 };
                 var allTasks = await repository.SelectAll();
-                response.Data.Ready = (int)allTasks.Where(t => t.Status == true).Count();
-                response.Data.NotReady = (int)allTasks.Where(t => t.Status == false).Count();
-                response.Data.NumbersOfElements = allTasks.Count();
                 var taskByPage = allTasks.Where(t => t.Status == status)
                                             .Skip(pageParameters.Page - 1 * pageParameters.perPage)
                                             .Take(pageParameters.perPage).ToList();
                 response.Data.Content = taskByPage;
+                response.Data.Ready = (int)taskByPage.Where(t => t.Status == true).Count();
+                response.Data.NotReady = (int)taskByPage.Where(t => t.Status == false).Count();
+                response.Data.NumbersOfElements = taskByPage.Count();
                 return response;
             }
             catch (Exception)
@@ -138,6 +138,27 @@ namespace Todo.Data.Services.Implementations
                 var task = autoMapper.Mapper.Map<TaskEntity>(await repository.Select(id));
                 task.Text = textTodoDto.Text;
                 await repository.Update(task);
+                response.StatusCode = StatusCode.OK;
+                response.Success = true;
+                return response;
+            }
+            catch (Exception)
+            {
+                return new BaseSuccessResponse()
+                {
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false
+                };
+            }
+        }
+
+        public async Task<BaseSuccessResponse> Patch(ChangeStatusTodoDto textTodoDto)
+        {
+            try
+            {
+                var response = new BaseSuccessResponse();
+                var tasks = autoMapper.Mapper.Map<List<TaskEntity>>(await repository.SelectAll());
+                await repository.UpdateAll(tasks);
                 response.StatusCode = StatusCode.OK;
                 response.Success = true;
                 return response;

@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj": {}
+    "/home/dunice/kabaruhina_web-todo/todo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj": {
+    "/home/dunice/kabaruhina_web-todo/todo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj",
+        "projectUniqueName": "/home/dunice/kabaruhina_web-todo/todo.csproj",
         "projectName": "todo",
-        "projectPath": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\todo.csproj",
-        "packagesPath": "C:\\Users\\UserPC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\UserPC\\Downloads\\kabaruhina_web-todo\\obj\\",
+        "projectPath": "/home/dunice/kabaruhina_web-todo/todo.csproj",
+        "packagesPath": "/home/dunice/.nuget/packages/",
+        "outputPath": "/home/dunice/kabaruhina_web-todo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\UserPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/dunice/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,8 +71,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -87,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.119/RuntimeIdentifierGraph.json"
         }
       }
     }

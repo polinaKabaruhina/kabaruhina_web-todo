@@ -52,5 +52,11 @@ namespace Todo.Data.DAL.Repositories.Implementations
             context.Tasks.Update(entity);
             await context.SaveChangesAsync();
         }
+
+        public async Task UpdateAll(List<TaskEntity> entities)
+        {
+            context.Tasks.UpdateRange(entities);
+            await context.SaveChangesAsync();
+        }
     }
 }
