@@ -55,5 +55,12 @@ namespace Todo.Controllers
             var response =  await service.PatchStatus(id, status);
             return response;
         }
+
+        [HttpPatch("text/{id}")]
+        public async Task<BaseSuccessResponse> PatchText(int id, ChangeTextTodoDto textTodoDto)
+        {
+            var response =  await service.PatchText(id, textTodoDto);
+            return response;
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace Todo.Data.Mapping.Profiles
         public TaskProfile()
         {
             CreateMap<TaskEntity, CreateTodoDto>().ReverseMap();
+            CreateMap<TaskEntity,ChangeTextTodoDto>().ReverseMap();
         }
     }
 }

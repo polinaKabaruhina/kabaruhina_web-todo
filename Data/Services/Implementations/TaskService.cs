@@ -129,5 +129,27 @@ namespace Todo.Data.Services.Implementations
                 };
             }
         }
+
+        public async Task<BaseSuccessResponse> PatchText(int id, ChangeTextTodoDto textTodoDto)
+        {
+            try
+            {
+                var response = new BaseSuccessResponse();
+                var task = autoMapper.Mapper.Map<TaskEntity>(await repository.Select(id));
+                task.Text = textTodoDto.Text;
+                await repository.Update(task);
+                response.StatusCode = StatusCode.OK;
+                response.Success = true;
+                return response;
+            }
+            catch (Exception)
+            {
+                return new BaseSuccessResponse()
+                {
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false
+                };
+            }
+        }
     }
 }

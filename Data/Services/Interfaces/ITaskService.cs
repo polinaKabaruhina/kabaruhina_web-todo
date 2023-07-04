@@ -14,5 +14,6 @@ namespace Todo.Data.Services.Interfaces
         public Task<BaseSuccessResponse> Delete(int id);
         public Task<CustomSuccessResponse> GetPaginated(TaskPageParameters pageParameters, bool status);
         public Task<BaseSuccessResponse> PatchStatus(int id, bool status);
+        public Task<BaseSuccessResponse> PatchText(int id, ChangeTextTodoDto textTodoDto);
     }
 }
