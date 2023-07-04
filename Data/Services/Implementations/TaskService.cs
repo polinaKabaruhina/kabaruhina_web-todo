@@ -158,6 +158,7 @@ namespace Todo.Data.Services.Implementations
             {
                 var response = new BaseSuccessResponse();
                 var tasks = autoMapper.Mapper.Map<List<TaskEntity>>(await repository.SelectAll());
+                tasks.ForEach(t => t.Status = textTodoDto.Status);
                 await repository.UpdateAll(tasks);
                 response.StatusCode = StatusCode.OK;
                 response.Success = true;

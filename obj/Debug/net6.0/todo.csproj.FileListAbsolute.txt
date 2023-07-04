@@ -152,3 +152,5 @@ C:/Users/UserPC/Downloads/kabaruhina_web-todo/obj/Debug/net6.0/ref/todo.dll
 /home/dunice/kabaruhina_web-todo/obj/Debug/net6.0/scopedcss/bundle/todo.styles.css
 /home/dunice/kabaruhina_web-todo/obj/Debug/net6.0/todo.csproj.CopyComplete
 /home/dunice/kabaruhina_web-todo/obj/Debug/net6.0/todo.genruntimeconfig.cache
+/home/dunice/kabaruhina_web-todo/bin/Debug/net6.0/DotNetEnv.dll
+/home/dunice/kabaruhina_web-todo/bin/Debug/net6.0/Sprache.dll

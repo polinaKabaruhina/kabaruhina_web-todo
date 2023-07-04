@@ -7,9 +7,12 @@ using Todo.Data.Services.Implementations;
 using Todo.Data.Services.Interfaces;
 
 
+DotNetEnv.Env.Load("./.env");
+var env = Environment.GetEnvironmentVariables();
+string connectionsString = $"Host={env["DB_HOST"]};Port={env["DB_PORT"]};Database={env["DB_DATABASE"]};Username={env["DB_USER"]};Password={env["DB_PASS"]}";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(op => op.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<AppDbContext>(op => op.UseNpgsql(connectionsString));
 builder.Services.AddTransient<AutoMapperCreator>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddTransient<ITaskService, TaskService>();
