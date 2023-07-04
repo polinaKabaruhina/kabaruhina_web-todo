@@ -20,9 +20,9 @@ namespace Todo.Data.DAL.Repositories.Implementations
             return true;
         }
 
-        public async Task<bool> DeleteAll()
+        public async Task<bool> DeleteAllReady()
         {
-            var list = await SelectAll();
+            var list = await context.Tasks.Where(t => t.Status == true).ToListAsync();
             context.Tasks.RemoveRange(list);
             await context.SaveChangesAsync();
             return true;

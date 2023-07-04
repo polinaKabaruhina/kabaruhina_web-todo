@@ -10,8 +10,9 @@ namespace Todo.Data.Services.Interfaces
     {
         public AutoMapperCreator autoMapper{get;set;}
         public Task<BaseSuccessResponse<TaskEntity>> Create(CreateTodoDto createTodo);
-        public Task<BaseSuccessResponse<bool>> DeleteAllReady();
-        public Task<BaseSuccessResponse<bool>> Delete(int id);
+        public Task<BaseSuccessResponse> DeleteAllReady();
+        public Task<BaseSuccessResponse> Delete(int id);
         public Task<CustomSuccessResponse> GetPaginated(TaskPageParameters pageParameters, bool status);
+        public Task<BaseSuccessResponse> PatchStatus(int id, bool status);
     }
 }

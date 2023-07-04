@@ -29,14 +29,14 @@ namespace Todo.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<BaseSuccessResponse<bool>> Delete(int id)
+        public async Task<BaseSuccessResponse> Delete(int id)
         {
             var response = await service.Delete(id);
             return response;
         }
 
         [HttpDelete]
-        public async Task<BaseSuccessResponse<bool>> DeleteAllReady()
+        public async Task<BaseSuccessResponse> DeleteAllReady()
         {
             var response = await service.DeleteAllReady();
             return response;
@@ -46,6 +46,13 @@ namespace Todo.Controllers
         public async Task<CustomSuccessResponse> GetPaginated([FromQuery]TaskPageParameters parameters, bool status)
         {
             var response = await service.GetPaginated(parameters, status);
+            return response;
+        }
+        
+        [HttpPatch("status/{id}")]
+        public async Task<BaseSuccessResponse> PatchStatus(int id, bool status)
+        {
+            var response =  await service.PatchStatus(id, status);
             return response;
         }
     }

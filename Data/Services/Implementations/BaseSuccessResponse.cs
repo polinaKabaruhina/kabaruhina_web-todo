@@ -9,4 +9,10 @@ namespace Todo.Data.Services.Implementations
         public bool Success{get;set;}
         public T Data {get; set;}
     }
+
+    public class BaseSuccessResponse
+    {
+        public StatusCode StatusCode{get;set;}
+        public bool Success{get;set;}
+    }
 }

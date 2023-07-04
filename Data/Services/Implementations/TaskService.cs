@@ -41,11 +41,11 @@ namespace Todo.Data.Services.Implementations
             }
         }
 
-        public async Task<BaseSuccessResponse<bool>> Delete(int id)
+        public async Task<BaseSuccessResponse> Delete(int id)
         {
            try
             {
-                var response = new BaseSuccessResponse<bool>();
+                var response = new BaseSuccessResponse();
                 await repository.Delete(id);
                 response.StatusCode = StatusCode.OK;
                 response.Success = true;
@@ -53,7 +53,7 @@ namespace Todo.Data.Services.Implementations
             }
             catch (Exception)
             {
-                return new BaseSuccessResponse<bool>()
+                return new BaseSuccessResponse()
                 {
                     StatusCode = StatusCode.InternalServerError,
                     Success = false
@@ -61,19 +61,19 @@ namespace Todo.Data.Services.Implementations
             }
         }
 
-        public async Task<BaseSuccessResponse<bool>> DeleteAllReady()
+        public async Task<BaseSuccessResponse> DeleteAllReady()
         {
             try
             {
-                var response = new BaseSuccessResponse<bool>();
-                await repository.DeleteAll();
+                var response = new BaseSuccessResponse();
+                await repository.DeleteAllReady();
                 response.StatusCode = StatusCode.OK;
                 response.Success = true;
                 return response;
             }
             catch (Exception)
             {
-                return new BaseSuccessResponse<bool>()
+                return new BaseSuccessResponse()
                 {
                     StatusCode = StatusCode.InternalServerError,
                     Success = false
@@ -101,6 +101,28 @@ namespace Todo.Data.Services.Implementations
             catch (Exception)
             {
                 return new CustomSuccessResponse()
+                {
+                    StatusCode = StatusCode.InternalServerError,
+                    Success = false
+                };
+            }
+        }
+
+        public async Task<BaseSuccessResponse> PatchStatus(int id, bool status)
+        {
+            try
+            {
+                var response = new BaseSuccessResponse();
+                var task = await repository.Select(id);
+                task.Status = status;
+                await repository.Update(task);
+                response.StatusCode = StatusCode.OK;
+                response.Success = true;
+                return response;
+            }
+            catch (Exception)
+            {
+                return new BaseSuccessResponse()
                 {
                     StatusCode = StatusCode.InternalServerError,
                     Success = false
