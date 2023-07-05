@@ -6,6 +6,7 @@ namespace Todo.Data.DTO
     {
         [MinLength(3)]
         [MaxLength(160)]
+        [Required]
         public string Text{get;set;}
     }
 }

@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Todo.Data.Services.HelperModels
 {
     public class TaskPageParameters
     {
         private const int MaxCountPage = 50;
+        [Required]
         public int Page{get;set;}
+        [Required]
         public int perPage
         {
             get
