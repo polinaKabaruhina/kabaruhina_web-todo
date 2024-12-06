@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/dunice/todo/todo.csproj": {}
+    "/home/dunice/kabaruhina_web-todo/todo.csproj": {}
   },
   "projects": {
-    "/home/dunice/todo/todo.csproj": {
+    "/home/dunice/kabaruhina_web-todo/todo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dunice/todo/todo.csproj",
+        "projectUniqueName": "/home/dunice/kabaruhina_web-todo/todo.csproj",
         "projectName": "todo",
-        "projectPath": "/home/dunice/todo/todo.csproj",
+        "projectPath": "/home/dunice/kabaruhina_web-todo/todo.csproj",
         "packagesPath": "/home/dunice/.nuget/packages/",
-        "outputPath": "/home/dunice/todo/obj/",
+        "outputPath": "/home/dunice/kabaruhina_web-todo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/dunice/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -55,6 +59,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.4, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
